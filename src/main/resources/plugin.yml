@@ -1,0 +1,7 @@
+name: ItsMyConfigConsoleSupport
+version: '1.0'
+main: me.vrxdev.itsMyConfigConsoleSupport.ItsMyConfigConsoleSupport
+api-version: '1.21'
+authors: [ VRXDev ]
+website: https://vrxdev.xyz/
+depend: [ ItsMyConfig ]
