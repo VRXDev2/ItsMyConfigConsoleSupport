@@ -25,6 +25,7 @@ public final class IMCFilterInstaller {
         ctx.updateLoggers();
     }
 
+    // this exists only to add proper reload safety
     public static synchronized void uninstall() {
         if (filter == null) return;
 

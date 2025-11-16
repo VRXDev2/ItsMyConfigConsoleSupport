@@ -12,6 +12,7 @@ public final class ItsMyConfigConsoleSupport extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        // this is done only to add proper reload safety
         IMCFilterInstaller.uninstall();
     }
 }

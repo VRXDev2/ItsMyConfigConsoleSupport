@@ -3,7 +3,6 @@ package me.vrxdev.itsMyConfigConsoleSupport;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.ansi.ANSIComponentSerializer;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.filter.AbstractFilter;
 import org.bukkit.OfflinePlayer;
@@ -24,6 +23,8 @@ public class IMCFilter extends AbstractFilter {
     @Override
     public Result filter(LogEvent event) {
         String original = event.getMessage().getFormattedMessage();
+        if (!original.startsWith("$")) return Result.NEUTRAL;
+
         String modified = replacePlaceholdersAndColors(original);
 
         LogEventMutator.setMessage(event, modified);
@@ -32,9 +33,7 @@ public class IMCFilter extends AbstractFilter {
 
     private String replacePlaceholdersAndColors(String message) {
         if (message == null || !message.contains("<p:")) return message;
-
-        boolean requires = message.startsWith("$");
-        if (requires) message = message.substring(1);
+        message = message.substring(1);
 
         for (var entry : placeholderManager.getPlaceholdersMap().entrySet()) {
             String key = entry.getKey();
@@ -51,7 +50,7 @@ public class IMCFilter extends AbstractFilter {
                     message = message.replace("<p:" + key + ">", value);
                 }
             } catch (Exception ex) {
-                System.out.println("[IMC DEBUG] Failed placeholder: key=" + key + ", type=" + ph.getType() + " -> " + ex.getMessage());
+                System.out.println("[IMCCS DEBUG] Failed placeholder: key=" + key + ", type=" + ph.getType() + " -> " + ex.getMessage());
             }
         }
 
