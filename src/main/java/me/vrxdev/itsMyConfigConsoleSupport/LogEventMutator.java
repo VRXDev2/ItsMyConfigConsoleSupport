@@ -1,6 +1,7 @@
 package me.vrxdev.itsMyConfigConsoleSupport;
 
 import org.apache.logging.log4j.core.LogEvent;
+import org.apache.logging.log4j.core.impl.MutableLogEvent;
 import org.apache.logging.log4j.message.SimpleMessage;
 import java.lang.reflect.Field;
 
@@ -13,7 +14,7 @@ public class LogEventMutator {
             messageField.set(event, new SimpleMessage(newMessage));
         } catch (Exception e) {
             try {
-                if (event instanceof org.apache.logging.log4j.core.impl.MutableLogEvent mutable) {
+                if (event instanceof MutableLogEvent mutable) {
                     mutable.setMessage(new SimpleMessage(newMessage));
                 }
             } catch (Exception ignored) {}
