@@ -1,5 +1,5 @@
 name: ItsMyConfigConsoleSupport
-version: '1.0'
+version: '1.1'
 main: me.vrxdev.itsMyConfigConsoleSupport.ItsMyConfigConsoleSupport
 api-version: '1.21'
 authors: [ VRXDev ]
